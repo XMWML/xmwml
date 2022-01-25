@@ -154,10 +154,12 @@
 # 未完待续....
 ## XMWML 2022 永远相信美好的事情即将发生
 
-其他页面
+### 其他页面
 
 [主页](index)
 
 [高清开车图](drive.html)
 
 [猎奇视频](nibeipianle.mp4)
+
+[数学答案](mathsanswers.html)
