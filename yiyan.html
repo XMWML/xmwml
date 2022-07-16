@@ -1,0 +1,109 @@
+  <!-- 
+  时间：20-5-9
+  功能：调用免费句子api显示句子（大字体）
+    地址后加不同的值显示不同类型的句子
+      ?a-一言
+      ?b-毒鸡汤
+      ?c-土味情话
+      ?d-古诗词
+  作者：bzxg
+  接口：来自网络
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--解决http警报-->
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <title>随机句子 -</title>
+    <meta name="author" content="XM" />
+    <!-- 样式 start -->
+    
+    <!-- 样式 end -->
+  </head>
+  <body>
+    <!-- 主体 start -->
+    <article>
+      <section id="word">
+        :D 获取中...
+      </section>
+      <button type="button" onclick="location.reload();">刷新</button>
+    </article>
+    <!-- 主体 end -->
+    <!-- javascript strat -->
+    <script>
+      //api名称-地址
+      var apis = [{
+          name: "一言",
+          url: "https://v1.hitokoto.cn/?charset=utf-8&encode=text"
+        }, {
+          name: "毒鸡汤",
+          url: "http://api.btstu.cn/yan/api.php"
+        },
+        {
+          name: "土味情话",
+          url: "https://api.uomg.com/api/rand.qinghua?format=text"
+        },
+        {
+          name: "古诗词",
+          url: "https://v1.jinrishici.com/all.json"
+        }
+      ];
+      //获取并显示句子
+      function getWordData() {
+        var word = document.getElementById("word");
+        var index = chioceApi();
+        var url = apis[index].url;
+        var name = apis[index].name;
+        document.title += ' '+name;
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', url);
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4.&&xhr.status==200) {
+            var data = xhr.responseText;;
+            var result;
+            if (index == 3) {
+              var newdata = JSON.parse(data);
+              result = newdata.content + "<br/><span>" + newdata.author + "  - 《" + newdata.origin + "》</span>";
+            } else {
+              result = data;
+            }
+            word.innerHTML = result;
+          }
+        };
+        xhr.send();
+      }
+      //根据链接选择api
+      function chioceApi() {
+        var address = location.href;
+        var index; //存放索引
+        if (address.indexOf("?") != -1) {
+          var key = address.split("?")[1];
+          switch (key) {
+            case "a":
+              index = 0;
+              break;
+            case "b":
+              index = 1;
+              break;
+            case "c":
+              index = 2;
+              break;
+            case "d":
+              index = 3;
+              break;
+            default:
+              index = 0;
+              break;
+          }
+        } else {
+          index = 0;
+        }
+        return index;
+      }
+      //开始
+      getWordData();
+</script>
+    <!-- javascript end -->
+  </body>
+</html>
