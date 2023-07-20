@@ -1,5 +1,5 @@
 # 化学答案
-又是爱悦悦的一天~
+悦悦~
 
 以下全文由微软必应生成
 ## 1-20号元素
@@ -104,4 +104,4 @@
 ## 1977-2023 「XM」
 Always believe that something beautiful is about to happen.
 
-悦悦加油~ 爱你~
+悦悦加油~ 
