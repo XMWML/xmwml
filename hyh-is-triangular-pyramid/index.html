@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>棱锥查询系统</title>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        position: relative; /* Make body the reference for absolute positioning */
+    }
+
+    @keyframes growImage {
+        from {
+            transform: scale(0);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+    .image-container {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        animation: growImage 3s forwards;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: opacity 2s;
+    }
+
+    .image-container img.second-image {
+        opacity: 0;
+        z-index: -1;
+    }
+
+    .text {
+        opacity: 0;
+        animation: fadeIn 3s forwards;
+        animation-delay: 3s;
+        font-size: 20px;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .image-container img.first-image {
+        animation: fadeOut 2s forwards;
+        animation-delay: 6s;
+    }
+
+    .image-container img.second-image {
+        animation: fadeIn 2s forwards;
+        animation-delay: 6s;
+        z-index: 1;
+    }
+    @keyframes grow {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+   .love {
+        position: absolute;
+        animation: fadeIn 2s forwards, grow 5s forwards;
+}
+  
+</style>
+</head>
+<body>
+
+<div class="image-container">
+    <img src="hyh.jpg" alt="第一张图片" class="first-image">
+    <img src="slz.jpg" alt="第二张图片" class="second-image">
+</div>
+<div class="text">华云豪是三棱锥</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const secondImage = document.querySelector('.second-image');
+    secondImage.addEventListener('animationend', function() {
+        for (let i = 0; i < 10; i++) {
+            const loveImg = document.createElement('img');
+            loveImg.src = 'love.png';
+            loveImg.style.width = `${Math.random() * 100 + 20}px`; // Random width between 20px and 120px
+            loveImg.style.height = 'auto';
+            loveImg.style.top = `${Math.random() * window.innerHeight}px`;
+            loveImg.style.left = `${Math.random() * window.innerWidth}px`;
+            loveImg.classList.add('love');
+            document.body.appendChild(loveImg);
+        }
+    });
+});
+</script>
+
+</body>
+</html>
